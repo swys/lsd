@@ -1,14 +1,12 @@
 var test = require('tape'),
 	fs = require('fs'),
 	path = require('path'),
-	DirStream = require('../dirStream.js'),
-	dirStream = DirStream(),
-	pass = require('./passThrough');
+	Lsd = require('../lsd.js'),
+	lsd = Lsd();
 
 
 test('empty', function(t) {
 	var empty = process.cwd() + path.sep + 'empty',
-		p = pass(empty),
 		contents;
 
 	t.plan(3);
@@ -19,13 +17,13 @@ test('empty', function(t) {
 	t.equal(contents.length, 0, "Should be empty");
 
 
-	dirStream.on('empty', function(dir) {
+	lsd.write(empty);
+
+	lsd.on('empty', function(dir) {
 		console.log("Got empty on : " + dir);
 		t.ok(dir, "This is my empty directory");
 		cleanup();
 	});
-
-	p.pipe(dirStream);
 });
 
 function cleanup() {

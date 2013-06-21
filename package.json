@@ -1,13 +1,13 @@
 {
-  "name": "dirTree",
+  "name": "lsd",
   "version": "0.0.1",
   "description": "Stream the contents of a given directory",
-  "main": "dirTree.js",
+  "main": "lsd.js",
   "scripts": { "test": "node test/runner.js" },
   "repository": "",
   "keywords": [
     "directory stream",
-    "dir stream",
+    "list directory",
     "ls",
     "ls stream"
   ],
