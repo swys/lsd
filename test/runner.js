@@ -18,13 +18,8 @@ function runTest(test, cb) {
 	});
 
 	child.stderr.on('data', function(chunk) {
-		console.log("should never be here!!!!!!!!!!!!!!!!");
 		stderr += chunk;
 		child.kill();
-	});
-
-	child.on('error', function(err) {
-		console.log("log those errors");
 	});
 
 	killTimeout = setTimeout(function() {
