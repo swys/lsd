@@ -13,7 +13,6 @@ function runTest(test, cb) {
 		killTimeout;
 
 	child.stdout.on('data', function(chunk) {
-		//console.log(chunk.toString());
 		stdout += chunk;
 	});
 

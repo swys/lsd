@@ -8,7 +8,7 @@ function Lsd() {
 		return new Lsd();
 	}
 
-	Transform.call(this, {encoding : 'utf-8', decodeStrings : false});
+	Transform.call(this, { encoding : 'utf-8', decodeStrings : false });
 }
 
 Lsd.prototype = Object.create(Transform.prototype, {
@@ -18,30 +18,27 @@ Lsd.prototype = Object.create(Transform.prototype, {
 });
 
 Lsd.prototype._transform = function(root, encoding, done) {
-	var that = this,
-		dir = path.resolve(root);
-	fs.readdir(dir, function(err, contents) {
+	var that = this;
+	that.dir = path.resolve(root);
+	fs.readdir(that.dir, function(err, contents) {
 		if (err) {
 			that.emit('error', err);
 		} else {
 			if (contents.length === 0) {
-				that.emit('empty', dir);
+				that.emit('empty', that.dir);
+				done();
+				that.emit('end');
 			} else {
 				contents.forEach(function(file) {
-					that.push(dir + path.sep + file);
+					that.push(that.dir + path.sep + file);
 				});
-				that.end();
+				done();
+				that.emit('end');
 			}
 		}
 	});
 };
 
-Lsd.prototype.end = function() {
-	var that = this;
-	that.emit('end');
-};
-
-//Lsd.prototype.
 
 module.exports = function() {
 	return new Lsd();
