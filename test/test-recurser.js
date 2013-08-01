@@ -89,12 +89,11 @@ test('recurse', function(t) {
         }
     });
 
-	var rootDir = process.argv[2] || path.resolve('../../');
+	var rootDir = process.argv[2] || path.resolve('../');
     console.log(rootDir);
     lsd.pipe(process.stdout, { end : false });
     writes += 1;
     lsd.write(rootDir);
-    //t.pass(readCount + "means we are getting data");
 });
 
 
