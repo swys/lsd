@@ -1,7 +1,7 @@
 {
   "name": "lsd",
   "version": "0.0.1",
-  "description": "Stream the contents of a given directory",
+  "description": "Stream the contents of a given directory, using Node's Streams2 API",
   "main": "lsd.js",
   "scripts": { "test": "node test/runner.js" },
   "repository": "",
@@ -9,7 +9,8 @@
     "directory stream",
     "list directory",
     "ls",
-    "ls stream"
+    "ls stream",
+    "lsd"
   ],
   "author": "Kevin Carroll",
   "license": "MIT",

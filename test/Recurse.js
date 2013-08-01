@@ -4,6 +4,7 @@ var transform = require('stream').Transform,
 
 function Recurse() {
 	var that = this;
+    this._current = null;
 
 	transform.call(that, { encoding : 'utf-8', decodeStrings : false });
 }
@@ -15,8 +16,17 @@ Recurse.prototype = Object.create(transform.prototype, {
 });
 
 Recurse.prototype._transform = function(item, encoding, done) {
-	var that = this;
-
+	var that = this,
+        dir = path.dirname(item);
+    console.log("Dir : ", dir);
+    console.log("Current : ", that._current);
+    if (that._current === null) {
+        that._current = dir;
+    }
+    if (dir !== that._current) {
+        that.emit('exit', that._current);
+        that._current = dir;
+    }
 	fs.stat(item, function(err, stats) {
 		if (err) {
 			that.emit('error', err);

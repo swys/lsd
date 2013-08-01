@@ -82,7 +82,12 @@ test('verify contents with lsd', function(t) {
 	lsd.write(playground);
 
 	lsd.on('readable', function() {
-		readCount += 1;
+		var read;
+        while (read = lsd.read()) {
+            console.log("Read :", read);
+            readCount += 1;
+        }
+        this.end();
 	});
 
 	lsd.on('end', function() {
