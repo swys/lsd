@@ -44,7 +44,6 @@ test('recurse', function(t) {
         }
         console.log("******************************************************************************************");
         console.log("LSD __ENDED__");
-        console.log("Writechunk : ", writechunk);
         console.log("Writable State Ended ? :", this._writableState.ended);
         console.log("Count : ", this._count);
         console.log("Enters :", enters);
