@@ -5,7 +5,7 @@ var Lsd = require('../lsd.js'),
 	fs = require('fs'),
 	readCount = 0;
 
-test('write first 30 bytes of Macbeth, seperated into 3 files', function(t) {
+test('write first 30 kilobytes of Macbeth, seperated into 3 files', function(t) {
 	var playground = process.cwd() + path.sep + 'play',
 		i,
 		j,

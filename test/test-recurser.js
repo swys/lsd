@@ -88,7 +88,7 @@ test('recurse', function(t) {
         }
     });
 
-	var rootDir = process.argv[2] || path.resolve('../');
+	var rootDir = process.argv[2] || process.cwd();;
     console.log(rootDir);
     lsd.pipe(process.stdout, { end : false });
     writes += 1;
