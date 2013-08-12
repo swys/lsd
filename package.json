@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Stream the contents of a given directory, using Node's Streams2 API",
   "main": "lsd.js",
-  "scripts": { "test": "node test/run.js" },
+  "scripts": {
+    "test": "node test/run.js"
+  },
   "repository": "",
   "keywords": [
     "directory stream",
@@ -16,5 +18,8 @@
   "license": "MIT",
   "devDependencies": {
     "tape": "~1.0.4"
+  },
+  "dependencies": {
+    "watercolor": "0.0.1"
   }
 }

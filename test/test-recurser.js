@@ -32,7 +32,7 @@ test('recurse', function(t) {
 
     lsd.on('notFileorDir', function(item) {
         notFileorDir += 1;
-        console.log("Found item that is not a file or directory :", item);
+        //console.log("Found item that is not a file or directory :", item);
     });
 
     lsd.on('end', function() {
@@ -42,7 +42,7 @@ test('recurse', function(t) {
         if (exits + empty + errors + notFileorDir === enters) {
             allAddsUp = true;
         }
-        console.log("******************************************************************************************");
+        console.log("\n******************************************************************************************");
         console.log("LSD __ENDED__");
         console.log("Writable State Ended ? :", this._writableState.ended);
         console.log("Count : ", this._count);
@@ -61,7 +61,7 @@ test('recurse', function(t) {
 
     lsd.on('empty', function(dir) {
         empty += 1;
-        console.log("Empty :", dir);
+        //console.log("Empty :", dir);
         if (this._writeQ.length === 0) {
             this.end();
         } else {
@@ -73,12 +73,12 @@ test('recurse', function(t) {
 
     lsd.on('enter', function(dir) {
         enters += 1;
-        console.log("Entering :", dir);
+        //console.log("Entering :", dir);
     });
 
     lsd.on('exit', function(dir) {
         exits += 1;
-        console.log("Exiting :", dir);
+        //console.log("Exiting :", dir);
        if (this._writeQ.length === 0) {
             this.end();
         } else {
