@@ -47,6 +47,7 @@ Lsd.prototype._stat = function(item, cb) {
         if (err) {
             that._count -= 1;
             that.emit('error', err);
+            that.push(item);
         } else {
             if (stats.isDirectory()) {
                 that._count -= 1;
