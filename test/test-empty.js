@@ -11,7 +11,9 @@ test('empty', function(t) {
 
 	t.plan(3);
 
-	fs.mkdirSync(empty);
+	try {
+    fs.mkdirSync(empty);
+    } catch(e) {}
 	t.equal(fs.statSync(empty).isDirectory(), true, "Should be a directory");
 	contents = fs.readdirSync(empty);
 	t.equal(contents.length, 0, "Should be empty");

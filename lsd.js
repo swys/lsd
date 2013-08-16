@@ -9,7 +9,7 @@ function Lsd() {
     this._count = 0;
     this._writeQ = [];
     this._current = null;
-	Transform.call(this, { encoding : 'utf-8', decodeStrings : false });
+	Transform.call(this, { encoding : 'utf-8', decodeStrings : false  });
 }
 
 Lsd.prototype = Object.create(Transform.prototype, {
@@ -33,7 +33,8 @@ Lsd.prototype._transform = function(root, encoding, done) {
             } else {
                 that._count = contents.length;
 				contents.forEach(function(file) {
-				    that._stat(that._current + path.sep + file, done);
+                    var fullPath = that._current + path.sep + file;
+				    that._stat(fullPath, done);
                 });
             }
 		}

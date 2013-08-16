@@ -20,6 +20,6 @@
     "tape": "~1.0.4"
   },
   "dependencies": {
-    "watercolor": "0.0.1"
+    "watercolor": "0.0.x"
   }
 }
