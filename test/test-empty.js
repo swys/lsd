@@ -18,14 +18,18 @@ test('empty', function(t) {
 	contents = fs.readdirSync(empty);
 	t.equal(contents.length, 0, "Should be empty");
 
-
-	lsd.write(empty);
-
 	lsd.on('empty', function(dir) {
 		console.log("Got empty on : " + dir);
 		t.ok(dir, "This is my empty directory");
 		cleanup();
 	});
+
+    lsd.on('enter', function(dir) {
+        console.log("Entered Dir : ", dir);
+    });
+
+    lsd.write(empty);
+
 });
 
 function cleanup() {
