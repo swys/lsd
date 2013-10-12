@@ -17,9 +17,11 @@
   "author": "Kevin Carroll",
   "license": "MIT",
   "devDependencies": {
-    "tape": "~1.0.4"
+    "tape": "~1.0.4",
+    "mkdirp": "~0.3.5"
   },
   "dependencies": {
-    "watercolor": "0.0.x"
+    "watercolor": "0.0.x",
+    "depthcharge": "0.0.0"
   }
 }
