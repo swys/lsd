@@ -46,7 +46,7 @@ Lsd.prototype._transform = function(root, encoding, done) {
                             that.emit('exit', that._current);
                             that.writeNext();
                             done();
-                        }   
+                        }
                     });
                 });
             }

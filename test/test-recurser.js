@@ -15,8 +15,8 @@ var Lsd = require('../lsd.js'),
 
 process.title = "recurser";
 
-//test('recurse', function(t) {
-//	t.plan(1);
+test('recurse', function(t) {
+	t.plan(1);
 
 	lsd.on('error', function(err) {
 	    errors += 1;
@@ -25,7 +25,7 @@ process.title = "recurser";
         console.log("Write Q :" + this._writeQ.length);
         console.log("Current Dir :", this._current);
         console.log("Count :", this._count);
-        //this.writeNext();
+        this.writeNext();
     });
 
     lsd.on('notFileorDir', function(item) {
@@ -65,13 +65,12 @@ process.title = "recurser";
         console.log("Ended : " + ends + " times");
         console.log("Recurse? :" + this.recurse);
         console.log("******************************************************************************************");
-//        t.equal(allAddsUp, true);
+        t.equal(allAddsUp, true);
     });
 
     lsd.on('empty', function(dir) {
         empty += 1;
         //console.log("Empty :", dir);
-        //this.writeNext();
     });
 
     lsd.on('enter', function(dir) {
@@ -82,21 +81,21 @@ process.title = "recurser";
     lsd.on('exit', function(dir) {
         exits += 1;
         //console.log("Exiting :", dir);
-        //this.writeNext();
     });
 
-    lsd.on('readable', function() {
-        var chunk;
-        while(chunk = this.read()) {
+//    lsd.on('readable', function() {
+//        var chunk;
+//        while(chunk = this.read()) {
 //            console.log("chunk :" + chunk);
-        }
-    });
+//        }
+//    });
 
 	var rootDir = process.argv[2] || process.cwd();;
-    //lsd.pipe(process.stdout, { end : false });
+    console.log("Root Dir :", rootDir);
+    lsd.pipe(process.stdout, { end : false });
     writes += 1;
     lsd.write(rootDir);
-//});
+});
 
 
 
