@@ -59,7 +59,7 @@ Lsd.prototype._stat = function(item, cb) {
                cb();
            }
         }
-    };
+    });
 };
 
 Lsd.prototype.writeNext = function() {

@@ -1,3 +1,5 @@
+var path = require('path');
+
 function gotDir(err, contents) {
     var that = this;
     if (err) {
