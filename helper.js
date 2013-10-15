@@ -8,6 +8,7 @@ function gotDir(err, contents) {
         this.done();
     } else {
         this.emit('enter', this._current);
+        this.emit('contents', {dir : this._current, contents : contents});
         if (contents.length === 0) {
             this.emit('empty', this._current);
             this.writeNext();
@@ -40,8 +41,14 @@ function isBool(test) {
     }
 }
 
+// Test if input is INT..will return either true of false
+function isInt(int) {
+    var intRegex = /^\d+$/;
+    return intRegex.test(int);
+}
+
 module.exports = {
     gotDir : gotDir,
     statCB : statCB,
-    isBool : isBool
+    isInt : isInt
 };

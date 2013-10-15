@@ -1,5 +1,5 @@
 var Lsd = require('../lsd.js'),
-	lsd = Lsd({ recurse : true }),
+	lsd = Lsd({depth : 0}),
 	path = require('path'),
 	test = require('tape'),
 	fs = require('fs'),
@@ -63,7 +63,6 @@ test('recurse', function(t) {
         console.log("Write was called " + writes + " times!!!!");
         console.log("Does it all add up? :", allAddsUp);
         console.log("Ended : " + ends + " times");
-        console.log("Recurse? :" + this.recurse);
         console.log("******************************************************************************************");
         t.equal(allAddsUp, true);
     });

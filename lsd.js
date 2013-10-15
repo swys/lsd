@@ -1,17 +1,20 @@
 var Transform = require('stream').Transform,
     fs = require('fs'),
     path = require('path'),
+    depthcharge = require('depthcharge'),
     helper = require('./helper.js');
 
 function Lsd(opts) {
     if (!(this instanceof Lsd)) {
         return new Lsd(opts);
     }
-    if (opts) {
-        this.recurse = helper.isBool(opts.recurse);
+    if (opts && helper.isInt(opts.depth)) {
+        this.depth = Number(opts.depth);
     } else {
-        this.recurse = false;
+        this.depth = -1;
     }
+    this._root = null;
+    this._level = 0;
     this._count = 0;
     this._writeQ = [];
     this._current = null;
@@ -27,6 +30,7 @@ Lsd.prototype = Object.create(Transform.prototype, {
 
 Lsd.prototype._transform = function(root, encoding, done) {
     this._current = path.resolve(root);
+    this._root = (this._root === null ? this._current : this._root);
     this.done = done;
     fs.readdir(this._current, helper.gotDir.bind(this));
 };
@@ -42,7 +46,7 @@ Lsd.prototype._stat = function(item, cb) {
         } else {
             if (stats.isDirectory()) {
                 that._count -= 1;
-                if (that.recurse === true) {
+                if (that.depth === 0 || depthcharge(that._root, that._current) < that.depth) {
                     that._writeQ.push(item);
                 }
                 that.emit('directory', item);
@@ -64,7 +68,7 @@ Lsd.prototype._stat = function(item, cb) {
 
 Lsd.prototype.writeNext = function() {
     var next;
-    if (this._writeQ.length === 0) {
+    if (this._writeQ.length === 0 || this.depth === -1) {
         this.end();
         return;
     } else {
