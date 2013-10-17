@@ -19,7 +19,7 @@
   "devDependencies": {
     "tape": "~1.0.4",
     "mkdirp": "~0.3.5",
-    "rmdir" : "1.x.x",
+    "rmdir": "1.x.x",
     "watercolor": "0.0.x"
   },
   "dependencies": {

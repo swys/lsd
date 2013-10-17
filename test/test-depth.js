@@ -147,10 +147,22 @@ test('test depth argument with 3 different values', function(t) {
 		depth0Color.color(colorShift[nextColor]);
 	});
 
-	oneDeep.pipe(depth1Color).pipe(process.stdout);
-	twoDeep.pipe(depth2Color).pipe(process.stdout);
-	threeDeep.pipe(depth3Color).pipe(process.stdout);
-	zeroDeep.pipe(depth0Color).pipe(process.stdout);
+	oneDeep.pipe(depth1Color).on('readable', function() {
+		var chunk = this.read();
+		process.stdout.write(chunk);
+	});
+	twoDeep.pipe(depth2Color).on('readable', function() {
+		var chunk = this.read();
+		process.stdout.write(chunk);
+	});
+	threeDeep.pipe(depth3Color).on('readable', function() {
+		var chunk = this.read();
+		process.stdout.write(chunk);
+	});
+	zeroDeep.pipe(depth0Color).on('readable', function() {
+		var chunk = this.read();
+		process.stdout.write(chunk);
+	});
 
 	oneDeep.write(baseDir);
 });
