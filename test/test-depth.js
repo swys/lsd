@@ -139,6 +139,7 @@ test('test depth argument with 3 different values', function(t) {
 		colorChanges = 0;
 		t.end();
 	});
+
 	zeroDeep.on('contents', function(dir) {
 		(first === true ? first = false : (nextColor >= maxColor ? nextColor = 0 : nextColor += 1));
 		console.log(dir.dir + " has " + dir.contents.length + " items");

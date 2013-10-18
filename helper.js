@@ -8,12 +8,12 @@ function gotDir(err, contents) {
         this.done();
     } else {
         this.emit('enter', this._current);
-        this.emit('contents', {dir : this._current, contents : contents});
         if (contents.length === 0) {
             this.emit('empty', this._current);
             this.writeNext();
             this.done();
         } else {
+            this.emit('contents', {dir : this._current, contents : contents});
             this._count = contents.length;
             contents.forEach(function(file) {
                 var fullPath = that._current + path.sep + file;
