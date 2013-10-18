@@ -7,6 +7,13 @@ Streaming `ls` like module. Write a path into lsd and get back a stream of that 
 
 Initialize lsd with `depth` option and then write a path to lsd and get back a stream of the directories contents DEPTH levels deep. Pass `0` to depth option and get back the entire directory tree.
 
+install
+=======
+
+```
+npm install lsd
+```
+
 example
 =======
 
