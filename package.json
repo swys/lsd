@@ -6,7 +6,10 @@
   "scripts": {
     "test": "node test/run.js"
   },
-  "repository": "",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/swys/lsd.git"
+  },
   "keywords": [
     "directory stream",
     "list directory",
