@@ -115,7 +115,7 @@ lsd.on('enter', function(dir) {
 ###exit
 similar to enter but this fires when you are finished with a particular sub-directory
 ```
-lsd.on('enter', function(dir) {
+lsd.on('exit', function(dir) {
 	// I'm now done with this sub-directory
 });
 ```
