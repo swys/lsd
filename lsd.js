@@ -38,31 +38,25 @@ Lsd.prototype._transform = function(root, encoding, done) {
 Lsd.prototype._stat = function(item, cb) {
     var that = this;
     fs.stat(item, function(err, stats) {
+        that._count -= 1;
         if (err) {
-            that._count -= 1;
             that.emit('error', err);
             that.push(item);
-            cb();
         } else {
             if (stats.isDirectory()) {
-                that._count -= 1;
                 if (that.depth === 0 || depthcharge(that._root, that._current) < that.depth) {
                     that._writeQ.push(item);
                 }
                 that.emit('directory', item);
                 that.push(item);
-                cb();
             } else if (stats.isFile()) {
-                 that._count -= 1;
                  that.emit('file', item);
                  that.push(item);
-                 cb();
            } else {
-               that._count -= 1;
                that.emit('notFileorDir', item);
-               cb();
            }
         }
+        cb();
     });
 };
 
